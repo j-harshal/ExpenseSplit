@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Splitwise</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            color: white;
+            font-size: 2em;
+            text-transform: uppercase;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav ul li {
+            float: left;
+            width: 100%;
+        }
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #4CAF50;
+        }
+        main {
+            padding: 40px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>Welcome to Splitwise</header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'add_user' %}">Add User</a></li>
+            <li><a href="{% url 'add_expense' %}">Add Expense</a></li>
+            <li><a href="{% url 'show_balances' %}">Show Balances</a></li>
+            <li><a href="{% url 'calculate_owe_details' %}">Show Owe Details</a></li>
+            <li><a href="{% url 'show_expense_details' %}">Show Expense Details</a></li>
+            <li><a href="{% url 'show_totals_for_user' %}">Show Totals for a User</a></li>
+            <li><a href="{% url 'clear_all_dues' %}">Clear All Dues</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Your Personal Expense Manager</h2>
+        <p>Splitwise helps you keep track of shared expenses, balances, and who owes what. Whether you're sharing a house with roommates, planning a group trip, or splitting bills with your partner, Splitwise makes it easy to manage shared expenses and settle up with friends.</p>
+        <p><em>Let's keep things fair and square!</em></p>
+    </main>
+    <footer>&copy; 2024 Splitwise, Inc. All rights reserved.</footer>
+</body>
+</html>
