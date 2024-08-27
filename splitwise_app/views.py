@@ -4,10 +4,57 @@ import os
 from django.shortcuts import render, redirect
 from .models import User, Expense
 from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib.auth import login as auth_login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login as auth_login, logout as auth_logout
+from django.contrib import messages
+from django.contrib.auth import logout as auth_logout
+from django.shortcuts import redirect
 
 MONGO_URI = "mongodb+srv://jharshal500:macbookair@cluster0.o8kzf.mongodb.net/"
 client = None
 db = None
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            auth_login(request, user)
+            messages.success(request, "Account created successfully.")
+            return redirect('home')
+        else:
+            messages.error(request, "Error creating account.")
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
+
+
+
+def login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            auth_login(request, user)
+            messages.success(request, "Logged in successfully.")
+            return redirect('home')
+        else:
+            messages.error(request, "Invalid username or password.")
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
+
+
+
+def logout(request):
+    auth_logout(request)
+    messages.success(request, "Logged out successfully.")
+    return redirect('home')
+
 
 def connect_to_db():
     global client, db

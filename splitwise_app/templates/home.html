@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -61,13 +61,19 @@
     <header>Welcome to Splitwise</header>
     <nav>
         <ul>
-            <li><a href="{% url 'add_user' %}">Add User</a></li>
-            <li><a href="{% url 'add_expense' %}">Add Expense</a></li>
-            <li><a href="{% url 'show_balances' %}">Show Balances</a></li>
-            <li><a href="{% url 'calculate_owe_details' %}">Show Owe Details</a></li>
-            <li><a href="{% url 'show_expense_details' %}">Show Expense Details</a></li>
-            <li><a href="{% url 'show_totals_for_user' %}">Show Totals for a User</a></li>
-            <li><a href="{% url 'clear_all_dues' %}">Clear All Dues</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'add_user' %}">Add User</a></li>
+                <li><a href="{% url 'add_expense' %}">Add Expense</a></li>
+                <li><a href="{% url 'show_balances' %}">Show Balances</a></li>
+                <li><a href="{% url 'calculate_owe_details' %}">Show Owe Details</a></li>
+                <li><a href="{% url 'show_expense_details' %}">Show Expense Details</a></li>
+                <li><a href="{% url 'show_totals_for_user' %}">Show Totals for a User</a></li>
+                <li><a href="{% url 'clear_all_dues' %}">Clear All Dues</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
         </ul>
     </nav>
     <main>
@@ -77,4 +83,170 @@
     </main>
     <footer>&copy; 2024 Splitwise, Inc. All rights reserved.</footer>
 </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Splitwise</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            color: white;
+            font-size: 2em;
+            text-transform: uppercase;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav ul li {
+            float: left;
+            width: 100%;
+        }
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #4CAF50;
+        }
+        main {
+            padding: 40px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
+        .login-box {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: inline-block;
+            padding: 20px;
+            max-width: 400px;
+            margin: 20px auto;
+            animation: slideIn 0.5s ease-out;
+        }
+        .login-box h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #4CAF50;
+        }
+        .login-box form {
+            display: flex;
+            flex-direction: column;
+        }
+        .login-box label {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .login-box input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        .login-box button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-box button:hover {
+            background-color: #45a049;
+        }
+        .signup-link {
+            display: block;
+            margin-top: 10px;
+            font-size: 1.1em;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        .signup-link:hover {
+            text-decoration: underline;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>Welcome to Splitwise</header>
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'add_user' %}">Add User</a></li>
+                <li><a href="{% url 'add_expense' %}">Add Expense</a></li>
+                <li><a href="{% url 'show_balances' %}">Show Balances</a></li>
+                <li><a href="{% url 'calculate_owe_details' %}">Show Owe Details</a></li>
+                <li><a href="{% url 'show_expense_details' %}">Show Expense Details</a></li>
+                <li><a href="{% url 'show_totals_for_user' %}">Show Totals for a User</a></li>
+                <li><a href="{% url 'clear_all_dues' %}">Clear All Dues</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <main>
+        {% if not user.is_authenticated %}
+        <div class="login-box">
+            <h2>Login</h2>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                
+                <button type="submit">Login</button>
+            </form>
+            <a class="signup-link" href="{% url 'signup' %}">New user? Signup</a>
+        </div>
+        {% else %}
+        <!-- Content for authenticated users goes here -->
+        {% endif %}
+    </main>
+    <footer>&copy; 2024 Splitwise, Inc. All rights reserved.</footer>
+</body>
 </html>
+
